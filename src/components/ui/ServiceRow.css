@@ -1,0 +1,93 @@
+.service-row {
+  display: grid;
+  grid-template-columns: 200px 1fr 60px;
+  align-items: center;
+  border-bottom: 1px solid var(--color-divider);
+  padding: 28px 0;
+  gap: var(--space-8);
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeSlideIn 0.6s ease forwards;
+}
+
+/* Staggered animation delays for each row */
+.service-row:nth-child(1) { animation-delay: 0.1s; }
+.service-row:nth-child(2) { animation-delay: 0.2s; }
+.service-row:nth-child(3) { animation-delay: 0.3s; }
+.service-row:nth-child(4) { animation-delay: 0.4s; }
+.service-row:nth-child(5) { animation-delay: 0.5s; }
+.service-row:nth-child(6) { animation-delay: 0.6s; }
+.service-row:nth-child(7) { animation-delay: 0.7s; }
+.service-row:nth-child(8) { animation-delay: 0.8s; }
+
+@keyframes fadeSlideIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Hover lift effect */
+.service-row:hover {
+  transform: translateY(-5px);
+  transition: transform 0.3s ease;
+}
+
+.service-row:first-child {
+  border-top: 1px solid var(--color-divider);
+}
+
+.service-row__category p {
+  font-family: var(--font-display-sans);
+  font-size: var(--text-sm);
+  color: var(--color-text);
+  line-height: 1.5;
+}
+
+.service-row__name {
+  position: relative;
+}
+
+.service-row__name span {
+  font-family: var(--font-display-sans);
+  font-size: clamp(28px, 3vw, 40px);
+  font-weight: 600;
+  color: var(--color-text);
+  letter-spacing: -0.01em;
+}
+
+.service-row__arrow {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.service-row__arrow span {
+  font-size: var(--text-xl);
+  color: var(--color-text);
+  font-family: var(--font-body);
+}
+
+@media (max-width: 768px) {
+  .service-row {
+    grid-template-columns: 1fr 40px;
+    grid-template-rows: auto auto;
+    opacity: 1; /* disable animation on small screens */
+    transform: none;
+    animation: none;
+  }
+
+  .service-row__category {
+    grid-column: 1;
+    grid-row: 1;
+    font-size: var(--text-xs);
+  }
+
+  .service-row__name {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .service-row__arrow {
+    grid-column: 2;
+    grid-row: 1 / 3;
+  }
+}

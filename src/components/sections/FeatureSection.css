@@ -1,0 +1,160 @@
+.feature {
+  padding: var(--space-20) 0;
+  position: relative;
+  overflow: visible;
+}
+
+.feature__inner {
+  position: relative;
+}
+
+.feature__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 80px;
+}
+
+.feature__grid--reversed {
+  /* columns stay 1fr 1fr, DOM order swapped in JSX */
+}
+
+/* TEXT */
+.feature__text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.feature__headline {
+  font-family: var(--font-display-sans);
+  font-size: clamp(28px, 3vw, 40px);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--color-text);
+  letter-spacing: -0.02em;
+}
+
+.feature__body {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  line-height: 1.75;
+  max-width: 380px;
+}
+
+.feature__readmore {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--color-text);
+  font-weight: 400;
+  text-decoration: none;
+  margin-top: var(--space-2);
+  transition: opacity 0.2s;
+}
+
+.feature__readmore:hover {
+  opacity: 0.5;
+}
+
+.feature__readmore-arrow {
+  font-size: var(--text-lg);
+  line-height: 1;
+}
+
+/* IMAGE WRAP */
+.feature__image-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 320px;
+}
+
+/* Tomorrow variant: glow + rectangle */
+.feature__image-wrap--tomorrow .feature__glow {
+  position: absolute;
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 150, 150, 0.30) 0%, transparent 70%);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 0;
+}
+
+.feature__image-wrap--tomorrow .feature__rect {
+  position: absolute;
+  width: 180px;
+  height: 130px;
+  background-color: var(--color-triangle);
+  border-radius: 4px;
+  top: 30px;
+  right: 10px;
+  z-index: 1;
+  transform: rotate(12deg);
+}
+
+.feature__image-wrap--tomorrow .feature__photo {
+  position: relative;
+  z-index: 2;
+}
+
+/* Progress variant: triangles */
+.feature__image-wrap--progress {
+  justify-content: flex-start;
+}
+
+.feature__triangle {
+  position: absolute;
+  z-index: 0;
+}
+
+.feature__triangle--large {
+  left: 0;
+  bottom: 20px;
+  z-index: 0;
+}
+
+.feature__triangle--small {
+  right: 30px;
+  bottom: 10px;
+  z-index: 3;
+}
+
+.feature__image-wrap--progress .feature__photo {
+  position: relative;
+  z-index: 2;
+  margin-left: 40px;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .feature__grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-12);
+  }
+
+  .feature__grid--reversed > *:first-child {
+    order: 2;
+  }
+  .feature__grid--reversed > *:last-child {
+    order: 1;
+  }
+
+  .feature__image-wrap {
+    min-height: 260px;
+  }
+
+  .feature__image-wrap--progress {
+    justify-content: center;
+  }
+
+  .feature__image-wrap--progress .feature__photo {
+    margin-left: 0;
+  }
+}
